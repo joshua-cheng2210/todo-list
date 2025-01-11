@@ -14,6 +14,7 @@ function DisplayList(props) {
                     />
                     <label 
                         htmlFor={`checkbox-${index}`} 
+                        style = {{ textDecoration: item.checked ? 'line-through' : 'none' }}
                     > {item.todo} </label>
                     <button onClick={() => props.updateState({action: ACTIONS.DELETE_ITEM, indexToDelete: index})}> delete </button>
                 </div>
