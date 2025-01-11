@@ -5,10 +5,12 @@ import DisplayList from './components/DisplayList.jsx'
 export const ACTIONS={
   ADD_ITEM: "add-item",
   UPDATING_NEW_ITEM: "updating-new-item",
+  TOGGLE_CHECKBOX: "toggle-checkbox",
   DELETE_ITEM: "delete-item",
   CLEAR_ALL: "clear-all",
   NEW_LIST: "new-list"
 }
+
 function reducer(state, props){
   console.log("calling reducer")
   switch(props.action){
@@ -16,12 +18,16 @@ function reducer(state, props){
       if (props.payload === ""){
         return state
       } else{
-        console.log("adding item")
+        // console.log("adding item")
+        let itemX = {
+          todo: props.payload,
+          checked: false
+        }
         return {
           ...state,
           itemsList: [
             ...state.itemsList,
-            props.payload
+            itemX
           ],
           newItem: ""
         }
@@ -42,13 +48,24 @@ function reducer(state, props){
         ...state,
         itemsList: state.itemsList.filter((_, index) => index !== props.indexToDelete)
       }
+    case ACTIONS.TOGGLE_CHECKBOX:
+      if (props.indexToToggle === ""){
+        return state
+      } else {
+        return {
+          ...state,
+          itemsList: state.itemsList.map((itemX, index) => 
+            index === props.indexToToggle ? { ...itemX, checked:  !itemX.checked
+          } : itemX
+        )}
+      }
     default:
       return state
   }
 }
 
-function getListComponent(ItemsList, updateState){
-  return <DisplayList ItemsList={ItemsList} updateState={updateState}></DisplayList>
+function getListComponent(itemsList, updateState){
+  return <DisplayList ItemsList={itemsList} updateState={updateState}></DisplayList>
 }
 
 
