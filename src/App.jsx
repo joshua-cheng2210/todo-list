@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import './App.css'
 import DisplayList from './components/DisplayList.jsx'
 import InputTodo from './components/InputTodo.jsx'
+import ClearAll from './components/ClearAll.jsx'
 import { ACTIONS } from './constants.jsx'
 
 
@@ -36,7 +37,7 @@ function reducer(state, props){
           // newItem: `${state.newItem}${props.payload}` // props.payload which is inputed from the textbox will normally be the full string in the textbox and nor jsut the latest character
           newItem: props.payload
         }
-    }
+      }
     case ACTIONS.DELETE_ITEM:
       return {
         ...state,
@@ -53,6 +54,12 @@ function reducer(state, props){
           } : itemX
         )}
       }
+    case ACTIONS.CLEAR_ALL:
+      return {
+        ...state,
+        itemsList: []
+      }
+      // return {}
     default:
       return state
   }
@@ -64,6 +71,10 @@ function getListComponent(itemsList, updateState){
 
 function getInputTodoComponent(newToDoItem, updateState){
   return <InputTodo newItem={newToDoItem} updateState={updateState}></InputTodo>
+}
+
+function getClearAllComponent(updateState){
+  return <ClearAll updateState={updateState}></ClearAll>
 }
 
 
@@ -97,6 +108,9 @@ function App() {
           ()=> updateState({type: ACTIONS.ADD_ITEM, payload: state.newItem})
         }>submit item</button>
       </form> */}
+      <div>
+        {getClearAllComponent(updateState)}
+      </div>
 
       <div>
         {getInputTodoComponent(state.newItem, updateState)}
