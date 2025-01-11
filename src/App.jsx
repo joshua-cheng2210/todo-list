@@ -1,34 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useReducer } from 'react'
 import './App.css'
+import DisplayList from './components/DisplayList.jsx'
+
+export const ACTIONS={
+  ADD_ITEM: "add-item",
+  UPDATING_NEW_ITEM: "updating-new-item",
+  DELETE_ITEM: "delete-item",
+  CLEAR_ALL: "clear-all",
+  NEW_LIST: "new-list"
+}
+function reducer(state, props){
+  console.log("calling reducer")
+  switch(props.action){
+    case ACTIONS.ADD_ITEM:
+      if (props.payload === ""){
+        return state
+      } else{
+        console.log("adding item")
+        return {
+          ...state,
+          itemsList: [
+            ...state.itemsList,
+            props.payload
+          ],
+          newItem: ""
+        }
+    }
+    case ACTIONS.UPDATING_NEW_ITEM:
+      console.log(props.payload)
+      if (props.payload == "") {
+        return state
+      } else{
+        return {
+          ...state,
+          // newItem: `${state.newItem}${props.payload}` // props.payload which is inputed from the textbox will normally be the full string in the textbox and nor jsut the latest character
+          newItem: props.payload
+        }
+    }
+    case ACTIONS.DELETE_ITEM:
+      return {
+        ...state,
+        itemsList: state.itemsList.filter((_, index) => index !== props.indexToDelete)
+      }
+    default:
+      return state
+  }
+}
+
+function getListComponent(ItemsList, updateState){
+  return <DisplayList ItemsList={ItemsList} updateState={updateState}></DisplayList>
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [state, updateState] = useReducer(reducer, {itemsList: [], newItem: ""});
 
   return (
-    <>
+    <div>
+      
+      <div className='Heading Title'><h1>Todo-list</h1></div>
+      
+      <form 
+        onSubmit={(e) => {
+          e.preventDefault()
+          console.log("submitting this item to add", state)
+          updateState({action: ACTIONS.ADD_ITEM, payload: state.newItem})
+          // console.log(state)
+      }}
+      >
+        <label>new item: </label>
+        <input 
+          type="text" 
+          name="newList" 
+          placeholder="What would like to work on today?"
+          value = {state.newItem}
+          onChange={(e) => {
+            updateState({action: ACTIONS.UPDATING_NEW_ITEM, payload: e.target.value})
+          }}
+        ></input>
+        <button onClick={
+          ()=> updateState({type: ACTIONS.ADD_ITEM, payload: state.newItem})
+        }>submit item</button>
+      </form>
+
+      {/* <div>
+        <DisplayList></DisplayList>
+      </div> */}
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {getListComponent(state.itemsList, updateState)}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
