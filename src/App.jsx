@@ -73,8 +73,8 @@ function getInputTodoComponent(newToDoItem, updateState){
   return <InputTodo newItem={newToDoItem} updateState={updateState}></InputTodo>
 }
 
-function getClearAllComponent(updateState){
-  return <ClearAll updateState={updateState}></ClearAll>
+function getClearAllComponent(todoList, updateState){
+  return todoList.length >= 5 && <ClearAll updateState={updateState}></ClearAll>
 }
 
 
@@ -109,7 +109,7 @@ function App() {
         }>submit item</button>
       </form> */}
       <div>
-        {getClearAllComponent(updateState)}
+        {getClearAllComponent(state.itemsList, updateState)}
       </div>
 
       <div>
