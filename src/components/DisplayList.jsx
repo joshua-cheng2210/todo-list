@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from "prop-types"
-import { ACTIONS } from '../App'
+import { ACTIONS } from '../constants.jsx'
 
 function DisplayList(props) {
     return (

@@ -1,18 +1,12 @@
 import { useReducer } from 'react'
 import './App.css'
 import DisplayList from './components/DisplayList.jsx'
+import InputTodo from './components/InputTodo.jsx'
+import { ACTIONS } from './constants.jsx'
 
-export const ACTIONS={
-  ADD_ITEM: "add-item",
-  UPDATING_NEW_ITEM: "updating-new-item",
-  TOGGLE_CHECKBOX: "toggle-checkbox",
-  DELETE_ITEM: "delete-item",
-  CLEAR_ALL: "clear-all",
-  NEW_LIST: "new-list"
-}
 
 function reducer(state, props){
-  console.log("calling reducer")
+  // console.log("calling reducer")
   switch(props.action){
     case ACTIONS.ADD_ITEM:
       if (props.payload === ""){
@@ -33,7 +27,7 @@ function reducer(state, props){
         }
     }
     case ACTIONS.UPDATING_NEW_ITEM:
-      console.log(props.payload)
+      // console.log(props.payload)
       if (props.payload == "") {
         return state
       } else{
@@ -68,6 +62,10 @@ function getListComponent(itemsList, updateState){
   return <DisplayList ItemsList={itemsList} updateState={updateState}></DisplayList>
 }
 
+function getInputTodoComponent(newToDoItem, updateState){
+  return <InputTodo newItem={newToDoItem} updateState={updateState}></InputTodo>
+}
+
 
 function App() {
   const [state, updateState] = useReducer(reducer, {itemsList: [], newItem: ""});
@@ -77,7 +75,7 @@ function App() {
       
       <div className='Heading Title'><h1>Todo-list</h1></div>
       
-      <form 
+      {/* <form 
         onSubmit={(e) => {
           e.preventDefault()
           console.log("submitting this item to add", state)
@@ -98,11 +96,12 @@ function App() {
         <button onClick={
           ()=> updateState({type: ACTIONS.ADD_ITEM, payload: state.newItem})
         }>submit item</button>
-      </form>
+      </form> */}
 
-      {/* <div>
-        <DisplayList></DisplayList>
-      </div> */}
+      <div>
+        {getInputTodoComponent(state.newItem, updateState)}
+      </div>
+
       <div>
         {getListComponent(state.itemsList, updateState)}
       </div>
