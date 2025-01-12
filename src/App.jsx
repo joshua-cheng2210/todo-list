@@ -5,14 +5,13 @@ import InputTodo from './components/InputTodo.jsx'
 import ClearAll from './components/ClearAll.jsx'
 import { ACTIONS } from './constants.jsx'
 
-
 function reducer(state, props){
   // console.log("calling reducer")
   switch(props.action){
     case ACTIONS.ADD_ITEM:
       if (props.payload === ""){
         return state
-      } else{
+      } else {
         // console.log("adding item")
         let itemX = {
           todo: props.payload,
@@ -47,7 +46,7 @@ function reducer(state, props){
       if (props.indexToToggle === ""){
         return state
       } else {
-        return {
+        return { // learnings: you cant access the index and change the state like itemsList[index].checked = !itemsList[index].checked. YOU NEED TO RETURN THE NEW STATE
           ...state,
           itemsList: state.itemsList.map((itemX, index) => 
             index === props.indexToToggle ? { ...itemX, checked:  !itemX.checked
@@ -84,7 +83,7 @@ function App() {
   return (
     <div>
       
-      <div className='Heading Title'><h1>Todo-list</h1></div>
+      <div className='Heading-Title'><h1>Todo-list</h1></div>
       
       {/* <form 
         onSubmit={(e) => {
