@@ -24,10 +24,10 @@ function InputTodo(props) {
                 props.updateState({action: ACTIONS.UPDATING_NEW_ITEM, payload: e.target.value})
             }}
             ></input>
+            <button onClick={
+            ()=> props.updateState({type: ACTIONS.ADD_ITEM, payload: props.newItem})
+            }>submit item</button>
         </form>
-        <button onClick={
-        ()=> props.updateState({type: ACTIONS.ADD_ITEM, payload: props.newItem})
-        }>submit item</button>
 
     </div>
   )
