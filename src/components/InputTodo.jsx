@@ -4,8 +4,9 @@ import { ACTIONS } from '../constants.jsx'
 
 function InputTodo(props) {
   return (
-    <div>
+    <div className="input-Todo">
         <form 
+            className="input-Todo-form"
             onSubmit={(e) => {
             e.preventDefault()
             // console.log("submitting this item to add", state)
@@ -13,7 +14,7 @@ function InputTodo(props) {
             // console.log(state)
             }}
         >
-            <label>new item: </label>
+            <label className = "New-Todo-label">new item: </label>
             <input 
             type="text" 
             name="newList" 
@@ -23,10 +24,10 @@ function InputTodo(props) {
                 props.updateState({action: ACTIONS.UPDATING_NEW_ITEM, payload: e.target.value})
             }}
             ></input>
-            <button onClick={
-            ()=> props.updateState({type: ACTIONS.ADD_ITEM, payload: props.newItem})
-            }>submit item</button>
         </form>
+        <button onClick={
+        ()=> props.updateState({type: ACTIONS.ADD_ITEM, payload: props.newItem})
+        }>submit item</button>
 
     </div>
   )

@@ -27,17 +27,17 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   margin: 1rem;
-  /* display: flex;
-  place-items: center; */
+  display: flex;
+  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
   /* border: 1px; */
 }
 
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
+} */
 
 button {
   border-radius: 8px;
