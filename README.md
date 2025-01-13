@@ -1,8 +1,43 @@
-# React + Vite
+# MiniGhost
+## project details and purpose
+- building a simple version of a todo List. I aim to get familiarize and explore some HTML format practices and CSS on my own. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## project demo (in img or vid)
+https://joshua-cheng2210.github.io/todo-list/
 
-Currently, two official plugins are available:
+## Usage and Installation
+'''bash
+git clone https://github.com/joshua-cheng2210/todo-list.git
+cd todo-list
+npm install
+npm run dev
+'''
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Packages used
+- REACT 
+
+## Topics learnt
+- some JSX // HTML --> im tried learning how to break down complicated front end part into smaller manageble components to build
+- CSS --> exploring ways to style each component
+- REACT --> learnt to use REACT to break the UI down
+
+## Mistakes made that got me debugging 24 hours
+- didn't run into much head banging bug. the only thing that i decided to take my time is to explore different potential CSS styles and also exploring how to break the front end UI down into components
+
+
+## how to tweak this project for your own uses (for collaborative developers)
+- additional features can be added to the project
+
+## Find a bug?
+
+## Known Issues
+
+## go Fund me Coffee
+
+## contacts
+- name: Joshua Hor Soong, Cheng
+- email: chengjoshua22@gmail.com, chen7647@umn.edu
+- git hub: github.com/joshua-cheng2210
+- portfolio: 
+- linkedin: linkedin.com/in/joshua-cheng2210
+- goFundme some coffee: 
