@@ -111,7 +111,7 @@ function App() {
         {getClearAllComponent(state.itemsList, updateState)}
       </div>
 
-      <div  >
+      <div>
         {getInputTodoComponent(state.newItem, updateState)}
       </div>
 
